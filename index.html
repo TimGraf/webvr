@@ -1,0 +1,91 @@
+<html>
+  <head>
+    <script src="./js/vendor/aframe-v0.9.2.min.js"></script>
+    <script src="./js/vendor/aframe-event-set-component-v3.0.3.min.js"></script>
+    <script src="./js/custom-components.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <a-assets>
+        <img id="attainia" src="./media/textures/attainia.png">
+        <img id="check-floor" src="./media/textures/check-floor.png">
+        <a-asset-item id="hillrom-bed-obj" src="./media/models/HillromBed.obj"></a-asset-item>
+        <a-asset-item id="hillrom-bed-mtl" src="./media/models/HillromBed.mtl"></a-asset-item>
+        <a-asset-item id="cart-obj" src="./media/models/Cart.obj"></a-asset-item>
+        <a-asset-item id="cart-mtl" src="./media/models/Cart.mtl"></a-asset-item>
+        <a-mixin 
+          id="controller-right"
+          oculus-go-controls="hand: right"
+          laser-controls
+          raycaster="far: 4;"
+          line="color: red; opacity: 0.75"
+        >
+      </a-assets>
+
+      <a-entity
+        position="1 0.1 -2"
+        rotation="0 60 0"
+        scale="0.05 0.05 0.05"
+        obj-model="obj: #hillrom-bed-obj; mtl: #hillrom-bed-mtl"
+        model-opacity="1"
+        event-set__enter="_event: mouseenter; model-opacity: 0.4"
+        event-set__leave="_event: mouseleave; model-opacity: 1.0"
+        event-set__down="_event: mousedown; model-opacity: 1.0"
+        event-set__up="_event: mouseup; model-opacity: 0.4"
+        model-moveable
+      ></a-entity>
+
+      <a-entity
+        position="-3 0.1 -4"
+        rotation="0 240 0"
+        scale="0.05 0.05 0.05"
+        obj-model="obj: #cart-obj; mtl: #cart-mtl"
+        model-opacity="1"
+        event-set__enter="_event: mouseenter; model-opacity: 0.4"
+        event-set__leave="_event: mouseleave; model-opacity: 1.0"
+        event-set__down="_event: mousedown; model-opacity: 1.0"
+        event-set__up="_event: mouseup; model-opacity: 0.4"
+        model-moveable
+      ></a-entity>
+
+      <a-box
+        position="1.5 0.5 -1.5"
+        depth="0.5" 
+        height="0.5" 
+        width="0.5"
+        src="#attainia"
+        material="opacity: 1.0"
+        event-set__enter="_event: mouseenter; material.opacity: 0.4"
+        event-set__leave="_event: mouseleave; material.opacity: 1.0"
+        model-moveable
+      >
+      </a-box>
+
+      <a-plane 
+        position="0 0 -4" 
+        rotation="-90 0 0" 
+        width="20" 
+        height="20" 
+        material="src: #check-floor"
+      ></a-plane>
+
+      <a-sky 
+        color="#aaaaaa"
+      ></a-sky>
+
+      <a-entity 
+        camera 
+        look-controls 
+        position="0 1.6 2"
+      ></a-entity>
+
+      <!--<a-entity
+        laser-controls="hand: right"
+        line="color: red; opacity: 0.75"
+      ></a-entity>-->
+
+      <a-entity id="rhand" mixin="controller-right" ></a-entity>
+
+    </a-scene>
+  </body>
+</html>
