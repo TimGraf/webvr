@@ -37,19 +37,7 @@ AFRAME.registerComponent('model-moveable', {
     this.el.addEventListener('mouseup', evt => {
       this.raycaster = null;
       this.initDiff = null;
-    });/*
-    this.el.addEventListener('triggerdown', evt => {
-      this.raycaster = this.raycasterHold;
-
-      let intersection = this.raycaster.components.raycaster.getIntersection(this.el);
-      let elPos = this.el.object3D.position;
-
-      this.initDiff = this.positionDiff(elPos, intersection.point);
     });
-    this.el.addEventListener('triggerup', evt => {
-      this.raycaster = null;
-      this.initDiff = null;
-    });*/
     this.el.addEventListener('raycaster-intersected', evt => {
       this.raycasterHold = evt.detail.el;
     });
